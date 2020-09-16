@@ -7,12 +7,15 @@ import "./ImplementationConfigurationRegistry.sol";
 contract ImplementationConfiguration {
 
     address public immutable implementation;
-    constructor(ImplementationConfigurationRegistry registry) {
-        implementation = registry.implementation();
+    ImplementationConfigurationRegistry public immutable registry;
+
+    constructor(ImplementationConfigurationRegistry associatedRegistry) {
+        implementation = associatedRegistry.implementation();
+        registry = associatedRegistry;
     }
 
-    // TODO NOT_AUTHORIZED
     function destroy(address payable recipient) external {
+        require(msg.sender == registry.owner(), "NOT_AUTHORIZED");
         selfdestruct(recipient);
     }
 }

@@ -6,15 +6,15 @@ import "@nomiclabs/buidler/console.sol";
 contract ImplementationConfigurationRegistry {
     address public lastImplementation;
     address public implementation;
-    address internal _owner;
+    address public owner;
 
-    constructor(address owner, address initialImplementation) {
-        _owner = owner;
+    constructor(address initialOwner, address initialImplementation) {
+        owner = initialOwner;
         implementation = initialImplementation;
     }
 
     function setImplementation(address newImplementation) external {
-        require(msg.sender == _owner, "NOT_AUTHORIZED");
+        require(msg.sender == owner, "NOT_AUTHORIZED");
         lastImplementation = implementation;
         implementation = newImplementation;
     }
