@@ -4,11 +4,14 @@ const func: DeployFunction = async function (bre: BuidlerRuntimeEnvironment) {
   const {deployments} = bre;
   const {deployer} = await bre.getNamedAccounts();
   const {deploy} = deployments;
-  await deploy('NewImplementation', {
+  const implementationConfigurationRegistry = await deployments.get('ImplementationConfigurationRegistry');
+  await deploy('ImplementationConfiguration', {
     from: deployer,
+    args: [implementationConfigurationRegistry.address],
     log: true,
     deterministicDeployment: true,
   });
 };
 export default func;
-func.tags = ['NewImplementation'];
+func.tags = ['Upgrade'];
+func.dependencies = ['UpgradeSetup'];

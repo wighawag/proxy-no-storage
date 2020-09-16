@@ -7,6 +7,7 @@ const func: DeployFunction = async function (bre: BuidlerRuntimeEnvironment) {
   await deploy('InitialImplementation', {
     from: deployer,
     log: true,
+    deterministicDeployment: true,
   });
 };
 export default func;

@@ -12,16 +12,9 @@ const func: DeployFunction = async function (bre: BuidlerRuntimeEnvironment) {
     newImplementation.address
   );
   await execute('ImplementationConfiguration', {from: proxyOwner}, 'destroy', proxyOwner);
-  const implementationConfigurationRegistry = await deployments.get('ImplementationConfigurationRegistry');
-  await deploy('ImplementationConfiguration', {
-    from: deployer,
-    args: [implementationConfigurationRegistry.address],
-    log: true,
-    deterministicDeployment: true,
-  });
 };
 export default func;
-func.tags = ['Upgrade'];
+func.tags = ['UpgradeSetup'];
 func.dependencies = [
   'NewImplementation',
   'Proxy',
