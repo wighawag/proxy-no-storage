@@ -1,0 +1,14 @@
+{
+  "editor.formatOnSave": true,
+  "solidity.linter": "solhint",
+  "solidity.enableLocalNodeCompiler": false,
+  "solidity.packageDefaultDependenciesContractsDirectory": "src",
+  "solidity.packageDefaultDependenciesDirectory": "node_modules",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "[json]": {
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {}
+  }
+}
